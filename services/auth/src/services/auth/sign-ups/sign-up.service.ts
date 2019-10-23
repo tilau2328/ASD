@@ -35,7 +35,7 @@ export class SignUpService {
         if (connections) {
             const connectionDto: ConnectionDto[] = await Promise.all(connections
                 .map((connection: CreateConnectionDto) =>
-                    this.connectionConnector.createConnection(connection).toPromise()));
+                    this.connectionConnector.createConnection(connection)));
             connectionIds = connectionDto.map((connection: ConnectionDto) => connection.id);
         }
         const token: TokenDto = await this.tokenService.create(user.id);

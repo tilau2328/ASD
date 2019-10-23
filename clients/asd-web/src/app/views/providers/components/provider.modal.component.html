@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isUpdate ? 'Edit' : 'Add' }} Provider</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="providerForm">
+    <div class="form-group">
+      <label for="providerNameCreateInput">Name</label>
+      <select formControlName="name" id="providerNameCreateInput" class="form-control">
+        <option *ngFor="let provider of providers">{{provider}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="providerClientIdCreateInput">ClientId</label>
+      <input type="text" class="form-control" formControlName="clientId"
+             id="providerClientIdCreateInput" placeholder="SD28H3G0RE2" autocomplete="client-id"/>
+    </div>
+    <div class="form-group">
+      <label for="providerClientSecretCreateInput">Client Secret</label>
+      <div class="input-group mb-3">
+        <input [type]="showSecret ? 'text' : 'password'" class="form-control" formControlName="clientSecret"
+               id="providerClientSecretCreateInput" autocomplete="client-secret"
+               placeholder="{{ showSecret ? 'Don\'t reveal me to anyone' : '***********' }}" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-dark" type="button" (click)="showSecret=!showSecret">
+            {{ showSecret ? 'Hide' : 'Show' }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="providerAuthUrlCreateInput">Auth Url</label>
+      <input type="text" class="form-control" formControlName="authUrl"
+             id="providerAuthUrlCreateInput" placeholder="https://..." autocomplete="auth-url"/>
+    </div>
+    <div class="form-group">
+      <label for="providerTokenUrlCreateInput">Token Url</label>
+      <input type="text" class="form-control" formControlName="tokenUrl"
+             id="providerTokenUrlCreateInput" placeholder="https://..." autocomplete="token-url"/>
+    </div>
+    <div class="form-group">
+      <label for="providerUserUrlCreateInput">User URL</label>
+      <input type="text" class="form-control" formControlName="userUrl"
+             id="providerUserUrlCreateInput" placeholder="https://..." autocomplete="user-url"/>
+    </div>
+    <div class="form-group">
+      <label for="providerScopeCreateInput">Scope</label>
+      <input type="text" class="form-control" formControlName="scope"
+             id="providerScopeCreateInput" placeholder="user:read repo..." autocomplete="scope"/>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="onReset()">Reset</button>
+</div>

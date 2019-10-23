@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" routerLink="/">ASD</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent"
+          aria-controls="navBarContent" aria-expanded="false" aria-label="Toggle navigation"
+          (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navBarContent" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['providers']">
+          <span><fa-icon [icon]="faLink"></fa-icon> Providers</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" ngbDropdown *ngIf="isLoggedIn$ | async" display="static" placement="bottom-right">
+        <a class="nav-link" id="profileDropdown" role="button" ngbDropdownToggle>
+          <span><fa-icon [icon]="faUser"></fa-icon> User</span>
+        </a>
+        <ul class="bg-dark dropdown-menu-right" ngbDropdownMenu aria-labelledby="profileDropdown">
+          <li class="nav-item" *ngIf="user">
+            <a class="nav-link" [routerLink]="['profile']">
+              <fa-icon [icon]="faAddressCard"></fa-icon> Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()"><fa-icon [icon]="faSignOut"></fa-icon> Logout</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item" ngbDropdown *ngIf="!(isLoggedIn$ | async)" display="static" placement="bottom-right">
+        <a class="nav-link" id="authDropdown" role="button" ngbDropdownToggle>
+          <span><fa-icon [icon]="faSignIn"></fa-icon> Login</span>
+        </a>
+        <div class="bg-dark dropdown-menu-right" ngbDropdownMenu aria-labelledby="authDropdown">
+          <app-sign-in-form></app-sign-in-form>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

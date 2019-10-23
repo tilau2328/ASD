@@ -118,9 +118,9 @@ type ResourceType {
   method: String!
   endpoint: String!
   provider: String!
-  params: String!
-  headers: String!
-  queryParams: String!
+  params: String
+  headers: String
+  queryParams: String
 }
 
 type SignIn {

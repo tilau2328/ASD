@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <h1>Providers</h1>
+    <div class="input-group col-12 row">
+      <input class="form-control" placeholder="Search..." name="filter" type="text" [formControl]="filter"/>
+      <div class="input-group-append">
+        <button class="btn btn-outline-dark" (click)="createProvider()">
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let provider of providers$ | async">
+        <button class="btn btn-outline-dark col-8 col-sm-10" [routerLink]="['/provider', provider.id]">
+          {{provider.name}}
+        </button>
+        <button class="btn btn-outline-dark col-2 col-sm-1" (click)="editProvider(provider)">
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </button>
+        <button class="btn btn-outline-dark col-2 col-sm-1" (click)="deleteProvider(provider.id)">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

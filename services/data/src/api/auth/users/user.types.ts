@@ -11,6 +11,6 @@ export class UserType {
     readonly username: string;
     @Field({ nullable: true })
     readonly avatarUrl?: string;
-    @Field(() => [ConnectionType])
+    @Field(type => [ConnectionType], { nullable: true })
     readonly connections?: ConnectionType[];
 }

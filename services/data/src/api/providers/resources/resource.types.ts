@@ -12,10 +12,10 @@ export class ResourceType {
     readonly endpoint: string;
     @Field()
     readonly provider: string;
-    @Field()
+    @Field({ nullable: true })
     readonly params?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly headers?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly queryParams?: string;
 }

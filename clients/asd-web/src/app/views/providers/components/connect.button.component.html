@@ -1,0 +1,3 @@
+<button (click)="onClick()" class="btn btn-dark text-light" style="width: 100%">
+  <fa-icon [icon]="icon"></fa-icon> {{connected ?  'Disconnect ' + capitalize(provider) : message}}
+</button>

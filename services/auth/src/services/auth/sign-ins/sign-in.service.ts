@@ -33,7 +33,7 @@ export class SignInService {
         let connectionId: string;
         if (connection) {
             const connectionDto: ConnectionDto =
-                await this.connectionConnector.updateConnection(connection).toPromise();
+                await this.connectionConnector.updateConnection(connection);
             user = await this.userDao.findById(connectionDto.user);
             connectionId = connectionDto.id;
         } else {

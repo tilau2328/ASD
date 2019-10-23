@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isUpdate ? 'Edit' : 'Add' }} Client</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="clientForm">
+    <div class="form-group">
+      <label for="clientNameCreateInput">Name</label>
+      <select formControlName="name" id="clientNameCreateInput" class="form-control">
+        <option *ngFor="let client of clients">{{client}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="clientClientIdCreateInput">ClientId</label>
+      <input type="text" class="form-control" formControlName="clientId"
+             id="clientClientIdCreateInput" placeholder="SD28H3G0RE2" autocomplete="client-id"/>
+    </div>
+    <div class="form-group">
+      <label for="clientClientSecretCreateInput">Client Secret</label>
+      <div class="input-group mb-3">
+        <input [type]="showSecret ? 'text' : 'password'" class="form-control" formControlName="clientSecret"
+               id="clientClientSecretCreateInput" autocomplete="client-secret"
+               placeholder="{{ showSecret ? 'Don\'t reveal me to anyone' : '***********' }}" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-dark" type="button" (click)="showSecret=!showSecret">
+            {{ showSecret ? 'Hide' : 'Show' }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="clientScopeCreateInput">Scope</label>
+      <input type="text" class="form-control" formControlName="scope"
+             id="clientScopeCreateInput" placeholder="user:read repo..." autocomplete="scope"/>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="onReset()">Reset</button>
+</div>

@@ -1,0 +1,29 @@
+<form class="px-2" style="min-width: 275px" (ngSubmit)="submit()" [formGroup]="credentialsForm">
+  <div class="form-group">
+    <label for="registerEmailForm">Email</label>
+    <input type="email" class="form-control" id="registerEmailForm" placeholder="e.mail@address.com"
+           autocomplete="new-email" formControlName="email" email>
+  </div>
+  <div class="form-group">
+    <label for="registerUsernameForm">Username</label>
+    <input type="username" class="form-control" id="registerUsernameForm" placeholder="John Doe"
+           autocomplete="new-username" formControlName="username">
+  </div>
+  <div class="form-group">
+    <label for="registerPasswordForm">Password</label>
+    <input type="password" class="form-control" id="registerPasswordForm" formControlName="password"
+           placeholder="**********" aria-describedby="forgetPasswordHelp" autocomplete="new-password">
+  </div>
+  <button type="submit" class="btn btn-outline-dark float-right">Register</button>
+  <button class="btn btn-outline-dark float-right" (click)="clearRegistration()">Clear</button>
+  <div class="col-sm-8">
+    <app-connect-button
+      [connected]="isProviderConnected('github')"
+      (onRemove)="removeConnection('github')"
+      (onSuccess)="addConnection($event)"
+      provider="github"
+      method="register"
+      class="col-md-8"
+    ></app-connect-button>
+  </div>
+</form>
