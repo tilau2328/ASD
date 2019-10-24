@@ -11,6 +11,11 @@ export class TokenController {
         return this.tokenService.list();
     }
 
+    @Get(':id')
+    async getTokens(@Param('id') id: string): Promise<TokenDto> {
+        return this.tokenService.findById(id);
+    }
+
     @Delete(':id')
     async deleteToken(@Param('id') id: string): Promise<string> {
         return this.tokenService.delete(id);

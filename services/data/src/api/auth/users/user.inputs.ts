@@ -2,12 +2,12 @@ import {Field, InputType} from "type-graphql";
 
 @InputType()
 export class UpdateUserInput {
-    @Field()
+    @Field({ nullable: true })
     readonly email?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly username?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly password?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly avatarUrl?: string;
 }

@@ -7,15 +7,15 @@ const routes: Route[] = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
   { path: 'auth',
     loadChildren: () =>
-      import('../auth/auth.views.module')
+      import('./modules/auth/auth.views.module')
         .then(mod => mod.AuthViewsModule) },
   { path: 'users',
     loadChildren: () =>
-      import('../users/user.views.module')
+      import('../admin/users/user.views.module')
         .then(mod => mod.UserViewsModule) },
   { path: 'providers',
     loadChildren: () =>
-      import('../providers/provider.views.module')
+      import('../admin/providers/provider.views.module')
         .then(mod => mod.ProviderViewsModule) },
   { path: '**', component: NotFoundPageComponent }
 ];

@@ -1,11 +1,11 @@
 import {Field, ID, ObjectType} from "type-graphql";
-import {UserType} from "../users/user.types";
+import {TokenDto} from "../../../connectors/auth/tokens/token.api";
 
 @ObjectType('Token')
 export class TokenType {
     @Field(() => ID)
     id: string;
-    @Field(() => UserType)
+    @Field(() => TokenType)
     readonly user: string;
     @Field()
     readonly accessToken: string;
@@ -15,4 +15,12 @@ export class TokenType {
     readonly tokenValidity: Date;
     @Field()
     readonly refreshValidity: Date;
+}
+
+@ObjectType('TokenEvent')
+export class TokenEventType {
+    @Field()
+    readonly type: string;
+    @Field(() => TokenType)
+    readonly payload: TokenDto;
 }

@@ -3,10 +3,10 @@ import {ConnectionInput} from "../../providers/connections/connection.inputs";
 
 @InputType()
 export class SignInInput {
-    @Field()
+    @Field({ nullable: true })
     readonly username?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly password?: string;
-    @Field(() => ConnectionInput)
+    @Field(() => ConnectionInput, { nullable: true })
     readonly connection?: ConnectionInput;
 }

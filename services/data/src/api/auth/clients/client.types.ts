@@ -1,4 +1,6 @@
 import {Field, ID, ObjectType} from "type-graphql";
+import {ClientDto} from "../../../connectors/auth/clients/client.api";
+import {ConnectionType} from "../../providers/connections/connection.types";
 
 @ObjectType('Client')
 export class ClientType {
@@ -6,10 +8,18 @@ export class ClientType {
     id: string;
     @Field()
     readonly name: string;
-    @Field()
+    @Field({ nullable: true })
     readonly scope: string;
     @Field()
     readonly clientId: string;
     @Field()
     readonly clientSecret: string;
+}
+
+@ObjectType('ClientEvent')
+export class ClientEventType {
+    @Field()
+    readonly type: string;
+    @Field(() => ClientType)
+    readonly payload: ClientDto;
 }

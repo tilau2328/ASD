@@ -9,8 +9,8 @@ export class SignUpInput {
     readonly username: string;
     @Field()
     readonly password: string;
-    @Field()
+    @Field({ nullable: true })
     readonly avatarUrl?: string;
-    @Field(() => [ConnectionInput])
-    readonly connections: ConnectionInput[];
+    @Field(type => [ConnectionInput], { nullable: true })
+    readonly connections?: ConnectionInput[];
 }

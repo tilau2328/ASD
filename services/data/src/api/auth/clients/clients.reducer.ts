@@ -1,32 +1,48 @@
-import {Args, Mutation, Query, Resolver} from "@nestjs/graphql";
-import {ClientType} from "./client.types";
+import {Args, Mutation, Query, Resolver, Subscription} from "@nestjs/graphql";
+import {ClientEventType, ClientType} from "./client.types";
 import {CreateClientInput, UpdateClientInput} from "./client.inputs";
 import {ClientConnector} from "../../../connectors/auth/clients/client.connector";
+import {ID} from "type-graphql";
+import {pubSub} from "../../app.api.module";
 
-@Resolver('Client')
+@Resolver(of => ClientType)
 export class ClientsResolver {
     constructor(private readonly clientConnector: ClientConnector) {}
 
-    @Query(() => [ClientType])
+    @Query(returns => [ClientType])
     async clients(): Promise<ClientType[]> {
         return this.clientConnector.list();
     }
 
-    @Mutation(() => ClientType)
+    @Query(returns => ClientType)
+    async client(@Args({ name: 'id', type: () => ID }) id: string): Promise<ClientType> {
+        return this.clientConnector.get(id);
+    }
+
+    @Mutation(returns => ClientType)
     async createClient(@Args('input') input: CreateClientInput): Promise<ClientType> {
         return this.clientConnector.create(input);
     }
 
-    @Mutation(() => ClientType)
+    @Mutation(returns => ClientType)
     async updateClient(
-        @Args('id') id: string,
+        @Args({ name: 'id', type: () => ID }) id: string,
         @Args('input') input: UpdateClientInput,
     ): Promise<ClientType> {
         return this.clientConnector.update(id, input);
     }
 
-    @Mutation(() => String)
-    async deleteClient(@Args('id') id: string): Promise<string> {
+    @Mutation(returns => String)
+    async deleteClient(@Args({ name: 'id', type: () => ID }) id: string): Promise<string> {
         return this.clientConnector.delete(id);
+    }
+
+    @Subscription(returns => ClientEventType, {
+        resolve: value => value,
+        filter: (payload, variables) =>
+            (!variables.id || payload.clientEvent.payload.id === variables.id),
+    })
+    async clientEvent(@Args({ name: 'id', type: () => ID, nullable: true }) id?: string) {
+        return pubSub.asyncIterator<ClientEventType>('clientEvent');
     }
 }

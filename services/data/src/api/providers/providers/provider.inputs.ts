@@ -5,6 +5,8 @@ import {CreateResourceInput} from "../resources/resource.inputs";
 export class CreateProviderInput {
     @Field()
     readonly name: string;
+    @Field({ nullable: true })
+    readonly scope?: string;
     @Field(() => CreateResourceInput)
     readonly authUrl: CreateResourceInput;
     @Field(() => CreateResourceInput)
@@ -15,12 +17,14 @@ export class CreateProviderInput {
 
 @InputType()
 export class UpdateProviderInput {
-    @Field()
+    @Field({ nullable: true })
     readonly name?: string;
-    @Field()
+    @Field({ nullable: true })
+    readonly scope?: string;
+    @Field({ nullable: true })
     readonly authUrl?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly userUrl?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly tokenUrl?: string;
 }

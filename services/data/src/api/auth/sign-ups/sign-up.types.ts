@@ -1,5 +1,6 @@
 import {Field, ID, ObjectType} from "type-graphql";
 import {ConnectionType} from "../../providers/connections/connection.types";
+import {SignUpDto} from "../../../connectors/auth/sign-ups/sign-up.api";
 import {TokenType} from "../tokens/token.types";
 import {UserType} from "../users/user.types";
 
@@ -19,4 +20,13 @@ export class SignUpType {
     readonly username: string;
     @Field({ nullable: true })
     readonly avatarUrl?: string;
+}
+
+
+@ObjectType('SignUpEvent')
+export class SignUpEventType {
+    @Field()
+    readonly type: string;
+    @Field(() => SignUpType)
+    readonly payload: SignUpDto;
 }

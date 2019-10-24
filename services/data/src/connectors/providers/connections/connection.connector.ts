@@ -20,4 +20,14 @@ export class ConnectionConnector {
             map((res: AxiosResponse<ConnectionDto>) => res.data)
         ).toPromise();
     }
+
+    async delete(id: string): Promise<string> {
+        return this.http.post<string>(this.getUrl(id)).pipe(
+            map((res: AxiosResponse<string>) => res.data)
+        ).toPromise();
+    }
+
+    private getUrl(id: string) {
+        return `${this.url}/${id}`
+    }
 }

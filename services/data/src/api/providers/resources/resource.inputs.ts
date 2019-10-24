@@ -10,28 +10,28 @@ export class CreateResourceInput {
     readonly endpoint: string;
     @Field()
     readonly provider: string;
-    @Field()
+    @Field({ nullable: true })
     readonly params?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly headers?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly queryParams?: string;
 }
 
 @InputType()
 export class UpdateResourceInput {
-    @Field()
+    @Field({ nullable: true })
     readonly name?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly method?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly endpoint?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly provider?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly params?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly headers?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly queryParams?: string;
 }

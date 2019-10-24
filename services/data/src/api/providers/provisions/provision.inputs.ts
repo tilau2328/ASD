@@ -16,12 +16,12 @@ export class CreateProvisionInput {
 
 @InputType()
 export class UpdateProvisionInput {
-    @Field()
+    @Field({ nullable: true })
     readonly name?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly provider?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly clientId?: string;
-    @Field()
+    @Field({ nullable: true })
     readonly clientSecret?: string;
 }

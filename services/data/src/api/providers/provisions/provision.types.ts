@@ -1,8 +1,10 @@
 import {Field, ID, ObjectType} from "type-graphql";
 import {ProviderType} from "../providers/provider.types";
 import {ClientType} from "../../auth/clients/client.types";
+import {ProviderDto} from "../../../connectors/providers/providers/provider.api";
+import {ProvisionDto} from "../../../connectors/providers/provisions/provision.api";
 
-@ObjectType()
+@ObjectType('Provision')
 export class ProvisionType {
     @Field(() => ID)
     id: string;
@@ -16,4 +18,12 @@ export class ProvisionType {
     readonly client: string;
     @Field(() => ProviderType)
     readonly provider: string;
+}
+
+@ObjectType('ProvisionEvent')
+export class ProvisionEventType {
+    @Field()
+    readonly type: string;
+    @Field(() => ProvisionType)
+    readonly payload: ProvisionDto;
 }

@@ -3,7 +3,6 @@ import {TokenDto} from "./token.api";
 import {map} from "rxjs/operators";
 import { AxiosResponse } from "axios";
 
-
 @Injectable()
 export class TokenConnector {
     url: string = 'http://localhost:3000/tokens';
@@ -22,9 +21,9 @@ export class TokenConnector {
         ).toPromise();
     }
 
-    async delete(id: string): Promise<TokenDto> {
-        return this.http.delete<TokenDto>(this.getUrl(id)).pipe(
-            map((res: AxiosResponse<TokenDto>) => res.data)
+    async delete(id: string): Promise<string> {
+        return this.http.delete<string>(this.getUrl(id)).pipe(
+            map((res: AxiosResponse<string>) => res.data)
         ).toPromise();
     }
 
