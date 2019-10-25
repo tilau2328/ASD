@@ -44,13 +44,21 @@ export const PROVISION_QUERY = gql`
     ${PROVISION_DETAIL_FRAGMENT}
 `;
 
+export const CREATE_PROVISION_MUTATION = gql`
+    mutation createProvision($input: CreteProvisionInput!) {
+        createProvision(input: $input) {
+            ...ProvisionDetailFragment
+        }
+    }
+    ${PROVISION_DETAIL_FRAGMENT}
+`;
+
 export const UPDATE_PROVISION_MUTATION = gql`
-    mutation updateProvision($id: ID!,$input: UpdateProvisionInput!) {
+    mutation updateProvision($id: ID!, $input: UpdateProvisionInput!) {
         updateProvision(id: $id, input: $input) {
             ...ProvisionDetailFragment
         }
     }
-
     ${PROVISION_DETAIL_FRAGMENT}
 `;
 
@@ -58,5 +66,15 @@ export const DELETE_PROVISION_MUTATION = gql`
     mutation deleteProvision($id: ID!) {
         deleteProvision(id: $id)
     }
-    ${PROVISION_DETAIL_FRAGMENT}
+`;
+
+export const PROVISION_SUBSCRIPTION = gql`
+    subscription provisionEvent($id: ID) {
+        provisionEvent(id: $id) {
+            type
+            payload {
+                ...ProvisionDetailFragment
+            }
+        }
+    }
 `;

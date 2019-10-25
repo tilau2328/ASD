@@ -28,3 +28,8 @@ export interface UpdateProviderDto {
   readonly clientId?: string;
   readonly clientSecret?: string;
 }
+
+export interface ProviderEventDto {
+  readonly type: string;
+  readonly payload: ProviderDto;
+}

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../../modules/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateConnectionDto} from "../../../modules/providers/dto/connection.dto";
-import {CreateSignUpDto} from "../../../modules/auth/dto/sign-up.dto";
+import {SignUpService} from "../../../../../../../services/auth/sign-ups/sign-up.service";
+import {CreateSignUpDto} from "../../../../../../../connectors/auth/sign-ups/sign-up.dto";
+import {CreateConnectionDto} from "../../../../../../../connectors/providers/connections/connection.dto";
 
 @Component({
   selector: 'app-sign-up-form',
@@ -14,7 +14,7 @@ export class SignUpFormComponent {
   credentialsForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
+    private signUpService: SignUpService,
     private formBuilder: FormBuilder,
   ) {
     this.createForm();
@@ -27,7 +27,7 @@ export class SignUpFormComponent {
 
   async submit(): Promise<void> {
     if (this.credentialsForm.valid) {
-      await this.authService.signUp({
+      await this.signUpService.signUp({
         ...this.credentialsForm.getRawValue(),
         connections: this.connections
       });

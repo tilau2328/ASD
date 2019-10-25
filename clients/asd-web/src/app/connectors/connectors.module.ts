@@ -18,7 +18,6 @@ export const cache: InMemoryCache = new InMemoryCache();
   ],
 })
 export class ConnectorsModule {
-
   private readonly url = 'localhost:8000/graphql';
 
   constructor(

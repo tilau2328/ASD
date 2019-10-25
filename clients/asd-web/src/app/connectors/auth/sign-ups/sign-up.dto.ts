@@ -1,6 +1,5 @@
 import {ConnectionDto, CreateConnectionDto} from "../../providers/connections/connection.dto";
 
-
 export interface SignUpDto {
   readonly id: string;
   readonly email: string;
@@ -14,4 +13,9 @@ export interface CreateSignUpDto {
   readonly username: string;
   readonly password: string;
   readonly connections: CreateConnectionDto[];
+}
+
+export interface SignUpEventDto {
+  readonly type: string;
+  readonly payload: SignUpDto;
 }

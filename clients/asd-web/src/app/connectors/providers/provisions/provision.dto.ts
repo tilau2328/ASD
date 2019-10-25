@@ -23,3 +23,8 @@ export interface UpdateProvisionDto {
   readonly clientId?: string;
   readonly clientSecret?: string;
 }
+
+export interface ProvisionEventDto {
+  readonly type: string;
+  readonly payload: ProvisionDto;
+}

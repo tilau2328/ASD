@@ -64,9 +64,11 @@ export const DELETE_CLIENT_MUTATION = gql`
 
 export const CLIENT_SUBSCRIPTION = gql`
     subscription clientEvent($id: ID) {
-        type
-        client {
-            ...ClientDetailFragment
+        clientEvent(id: $id) {
+            type
+            payload {
+                ...ClientDetailFragment
+            }
         }
     }
 `;

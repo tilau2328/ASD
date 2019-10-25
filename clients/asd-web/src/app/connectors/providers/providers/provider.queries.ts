@@ -27,7 +27,7 @@ export const PROVIDER_DETAIL_FRAGMENT = gql`
         authUrl {
             ...ResourceDetailFragment
         }
-        userUrl {
+        providerUrl {
             ...ResourceDetailFragment
         }
         tokenUrl {
@@ -56,7 +56,7 @@ export const PROVIDER_QUERY = gql`
 `;
 
 export const CREATE_PROVIDER_MUTATION = gql`
-    mutation createProvider($id: ID!,$input: CreateProviderInput!) {
+    mutation createProvider($input: CreateProviderInput!) {
         createProvider(input: $input) {
             ...ProviderDetailFragment
         }
@@ -65,7 +65,7 @@ export const CREATE_PROVIDER_MUTATION = gql`
 `;
 
 export const UPDATE_PROVIDER_MUTATION = gql`
-    mutation updateProvider($id: ID!,$input: UpdateProviderInput!) {
+    mutation updateProvider($id: ID!, $input: UpdateProviderInput!) {
         updateProvider(id: $id, input: $input) {
             ...ProviderDetailFragment
         }
@@ -76,5 +76,16 @@ export const UPDATE_PROVIDER_MUTATION = gql`
 export const DELETE_PROVIDER_MUTATION = gql`
     mutation deleteProvider($id: ID!) {
         deleteProvider(id: $id)
+    }
+`;
+
+export const PROVIDER_SUBSCRIPTION = gql`
+    subscription providerEvent($id: ID) {
+        providerEvent(id: $id) {
+            type
+            payload {
+                ...ProviderDetailFragment
+            }
+        }
     }
 `;

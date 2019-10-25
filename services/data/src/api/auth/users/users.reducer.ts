@@ -1,10 +1,12 @@
 import {Args, Mutation, Query, Resolver, Subscription} from "@nestjs/graphql";
 import {UserConnector} from "../../../connectors/auth/users/user.connector";
+import {CurrentUser} from "../../../core/decorators/current-user.decorator";
+import {UserDto} from "../../../connectors/auth/users/user.api";
 import {UpdateUserInput} from "./user.inputs";
+import {pubSub} from "../../app.api.module";
+import {UserEventType} from "./user.types";
 import {UserType} from "./user.types";
 import {ID} from "type-graphql";
-import {UserEventType} from "../users/user.types";
-import {pubSub} from "../../app.api.module";
 
 @Resolver(of => UserType)
 export class UsersResolver {
@@ -18,6 +20,11 @@ export class UsersResolver {
     @Query(returns => UserType)
     async user(@Args({ name: 'id', type: () => ID }) id: string): Promise<UserType> {
         return this.userConnector.get(id);
+    }
+
+    @Query(returns => UserType)
+    async me(@CurrentUser() user: UserDto): Promise<UserType> {
+        return user;
     }
 
     @Mutation(returns => UserType)

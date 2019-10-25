@@ -5,16 +5,14 @@ export interface UserDto {
   readonly avatarUrl?: string;
 }
 
-export interface CreateUserDto {
-  readonly email: string;
-  readonly username: string;
-  readonly password: string;
-  readonly avatarUrl?: string;
-}
-
 export interface UpdateUserDto {
   readonly email?: string;
   readonly username?: string;
   readonly password?: string;
   readonly avatarUrl?: string;
+}
+
+export interface UserEventDto {
+  readonly type: string;
+  readonly payload: UserDto;
 }

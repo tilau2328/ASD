@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
+import {TOKEN_DETAIL_FRAGMENT, TOKEN_ITEM_FRAGMENT} from "../tokens/token.queries";
+import {CONNECTION_ITEM_FRAGMENT} from "../../providers/connections/connection.queries";
 import {USER_ITEM_FRAGMENT} from "../users/user.queries";
-import {TOKEN_DETAIL_FRAGMENT} from "../tokens/token.queries";
 
 export const SIGN_IN_ITEM_FRAGMENT = gql`
     fragment SignInItemFragment on SignIn {
@@ -19,14 +20,16 @@ export const SIGN_IN_DETAIL_FRAGMENT = gql`
             ...UserItemFragment
         }
         username
-        connection {
-            ...ConnectionItemFragment
-        }
         token {
             ...TokenItemFragment
         }
+        connection {
+            ...ConnectionItemFragment
+        }
     }
     ${USER_ITEM_FRAGMENT}
+    ${TOKEN_ITEM_FRAGMENT}
+    ${CONNECTION_ITEM_FRAGMENT}
 `;
 
 export const SIGN_INS_QUERY = gql`
@@ -54,4 +57,15 @@ export const CREATE_SIGN_IN_MUTATION = gql`
         }
     }
     ${TOKEN_DETAIL_FRAGMENT}
+`;
+
+export const SIGN_IN_SUBSCRIPTION = gql`
+    subscription signInEvent($id: ID) {
+        signInEvent(id: $id) {
+            type
+            payload {
+                ...SignInDetailFragment
+            }
+        }
+    }
 `;

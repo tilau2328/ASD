@@ -11,3 +11,8 @@ export interface CreateConnectionDto {
   readonly state: string;
   readonly code: string;
 }
+
+export interface ConnectionEventDto {
+  readonly type: string;
+  readonly payload: ConnectionDto;
+}

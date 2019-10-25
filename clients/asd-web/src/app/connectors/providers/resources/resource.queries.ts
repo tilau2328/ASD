@@ -46,13 +46,21 @@ export const RESOURCE_QUERY = gql`
     ${RESOURCE_DETAIL_FRAGMENT}
 `;
 
+export const CREATE_RESOURCE_MUTATION = gql`
+    mutation createResource($input: CreateResourceInput!) {
+        createResource(input: $input) {
+            ...ResourceDetailFragment
+        }
+    }
+    ${RESOURCE_DETAIL_FRAGMENT}
+`;
+
 export const UPDATE_RESOURCE_MUTATION = gql`
-    mutation updateResource($id: ID!,$input: UpdateResourceInput!) {
+    mutation updateResource($id: ID!, $input: UpdateResourceInput!) {
         updateResource(id: $id, input: $input) {
             ...ResourceDetailFragment
         }
     }
-
     ${RESOURCE_DETAIL_FRAGMENT}
 `;
 
@@ -60,5 +68,15 @@ export const DELETE_RESOURCE_MUTATION = gql`
     mutation deleteResource($id: ID!) {
         deleteResource(id: $id)
     }
-    ${RESOURCE_DETAIL_FRAGMENT}
+`;
+
+export const RESOURCE_SUBSCRIPTION = gql`
+    subscription resourceEvent($id: ID) {
+        resourceEvent(id: $id) {
+            type
+            payload {
+                ...ResourceDetailFragment
+            }
+        }
+    }
 `;

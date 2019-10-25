@@ -19,3 +19,8 @@ export interface UpdateClientDto {
   readonly clientId?: string;
   readonly clientSecret?: string;
 }
+
+export interface ClientEventDto {
+  readonly type: string;
+  readonly payload: ClientDto;
+}

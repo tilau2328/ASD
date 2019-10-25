@@ -28,3 +28,8 @@ export interface UpdateResourceDto {
   readonly headers?: string;
   readonly queryParams?: string;
 }
+
+export interface ResourceEventDto {
+  readonly type: string;
+  readonly payload: ResourceDto;
+}

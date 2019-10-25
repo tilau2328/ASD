@@ -1,6 +1,16 @@
 import gql from "graphql-tag";
 import {PROVIDER_CONNECTION_FRAGMENT} from "../providers/provider.queries";
 
+export const CONNECTION_ITEM_FRAGMENT = gql`
+    fragment ConnectionItemFragment on Connection {
+        id
+        provider {
+            ...ProviderConnectionFragment
+        }
+    }
+  ${PROVIDER_CONNECTION_FRAGMENT}
+`;
+
 export const CONNECTION_DETAIL_FRAGMENT = gql`
     fragment ConnectionDetailFragment on Connection {
         id
@@ -44,5 +54,16 @@ export const CREATE_CONNECTION_MUTATION = gql`
 export const DELETE_CONNECTION_MUTATION = gql`
     mutation deleteConnection($id: ID!) {
         deleteConnection(id: $id)
+    }
+`;
+
+export const CONNECTION_SUBSCRIPTION = gql`
+    subscription connectionEvent($id: ID) {
+        connectionEvent(id: $id) {
+            type
+            payload {
+                ...ConnectionDetailFragment
+            }
+        }
     }
 `;

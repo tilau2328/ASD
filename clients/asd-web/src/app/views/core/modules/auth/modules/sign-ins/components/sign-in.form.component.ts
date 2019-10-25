@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../../modules/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateConnectionDto} from "../../../modules/providers/dto/connection.dto";
+import {SignInService} from "../../../../../../../services/auth/sign-ins/sign-in.service";
+import {CreateConnectionDto} from "../../../../../../../connectors/providers/connections/connection.dto";
 
 @Component({
   selector: 'app-sign-in-form',
@@ -12,7 +12,7 @@ export class SignInFormComponent {
   credentialsForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
+    private signInService: SignInService,
     private formBuilder: FormBuilder,
   ) {
     this.createForm();
@@ -20,12 +20,12 @@ export class SignInFormComponent {
 
   async submit(): Promise<void> {
     if(this.credentialsForm.valid) {
-      await this.authService.signIn({ ...this.credentialsForm.getRawValue() });
+      await this.signInService.signIn({ ...this.credentialsForm.getRawValue() });
     }
   }
 
   async onSuccess(connection: CreateConnectionDto): Promise<void> {
-    await this.authService.signIn({ connection });
+    await this.signInService.signIn({ connection });
   }
 
   private createForm() {

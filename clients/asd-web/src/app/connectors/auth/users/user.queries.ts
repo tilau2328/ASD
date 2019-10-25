@@ -20,9 +20,18 @@ export const USER_DETAIL_FRAGMENT = gql`
     }
 `;
 
+export const ME_QUERY = gql`
+    query me {
+        me {
+            ...UserDetailFragment
+        }
+    }
+    ${USER_DETAIL_FRAGMENT}
+`;
+
 export const USERS_QUERY = gql`
-    query clients {
-        clients {
+    query users {
+        users {
             ...UserItemFragment
         }
     }
@@ -30,8 +39,8 @@ export const USERS_QUERY = gql`
 `;
 
 export const USER_QUERY = gql`
-    query client($id: ID!) {
-        client(id: $id) {
+    query user($id: ID!) {
+        user(id: $id) {
             ...UserDetailFragment
         }
     }
@@ -51,5 +60,16 @@ export const UPDATE_USER_MUTATION = gql`
 export const DELETE_USER_MUTATION = gql`
     mutation deleteUser($id: ID!) {
         deleteUser(id: $id)
+    }
+`;
+
+export const USER_SUBSCRIPTION = gql`
+    subscription userEvent($id: ID) {
+        userEvent(id: $id) {
+            type
+            payload {
+                ...UserDetailFragment
+            }
+        }
     }
 `;
