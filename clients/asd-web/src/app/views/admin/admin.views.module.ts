@@ -1,7 +1,8 @@
 import {NgModule} from "@angular/core";
-import {AdminRoutesModule} from "./admin.routes.module";
+import {adminRoutes} from "./admin.routes";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
-  imports: [AdminRoutesModule],
+  imports: [RouterModule.forChild(adminRoutes)],
 })
 export class AdminViewsModule {}

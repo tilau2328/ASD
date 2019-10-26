@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { CoreViewModule } from "./views/core/core.view.module";
-import { AppComponent } from "./views/core/components/app.component";
+import {BrowserModule} from "@angular/platform-browser";
+import {AppComponent} from "./components/core/app.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
     CoreViewModule,

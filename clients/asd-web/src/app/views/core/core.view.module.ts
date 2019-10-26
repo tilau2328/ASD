@@ -1,28 +1,21 @@
 import {NgModule} from "@angular/core";
-import {SharedModule} from "../shared/shared.module";
-import {CoreRoutingModule} from "./core.routing.module";
-import {HomePageComponent} from "./pages/home.page.component";
-import {NavBarComponent} from "./components/nav-bar.component";
-import {AuthViewsModule} from "./modules/auth/auth.views.module";
-import {UserBadgeComponent} from "./components/user.badge.component";
-import {NotFoundPageComponent} from "./pages/not-found.page.component";
-import {AuthServicesModule} from "../../services/auth/auth/auth.services.module";
+import {coreRoutes} from "./core.routes";
+import {RouterModule} from "@angular/router";
+import {HomePageComponent} from "./home.page.component";
+import {NotFoundPageComponent} from "./not-found.page.component";
+import {CoreComponentModule} from "../../components/core/core.component.module";
 
 @NgModule({
   imports: [
-    SharedModule,
-    CoreRoutingModule,
-    AuthServicesModule,
-    AuthViewsModule,
+    CoreComponentModule,
+    RouterModule.forRoot(coreRoutes),
   ],
   declarations: [
-    NavBarComponent,
     HomePageComponent,
-    UserBadgeComponent,
     NotFoundPageComponent,
   ],
   exports: [
-    NavBarComponent,
+    CoreComponentModule,
   ]
 })
 export class CoreViewModule {}

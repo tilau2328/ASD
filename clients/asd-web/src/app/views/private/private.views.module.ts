@@ -1,9 +1,8 @@
 import {NgModule} from "@angular/core";
-import {ProfileViewsModule} from "./profile/profile.views.module";
+import {RouterModule} from "@angular/router";
+import {privateRoutes} from "./private.routes";
 
 @NgModule({
-  imports: [
-    ProfileViewsModule,
-  ],
+  imports: [RouterModule.forChild(privateRoutes)],
 })
 export class PrivateViewsModule {}
