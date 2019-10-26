@@ -1,5 +1,13 @@
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
-    <h1>Providers</h1>
+  <div class="col-sm-4">
+    <h1>Clients</h1>
+    <app-provider-list></app-provider-list>
+  </div>
+  <div class="col-sm-4">
+    <h1>Provisions</h1>
+    <app-resource-list></app-resource-list>
+  </div>
+  <div class="col-sm-4">
+    <router-outlet name="provider-resource"></router-outlet>
   </div>
 </div>

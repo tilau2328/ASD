@@ -7,10 +7,22 @@
   </button>
   <div class="collapse navbar-collapse" id="navBarContent" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['providers']">
-          <span><fa-icon [icon]="faLink"></fa-icon> Providers</span>
+      <li class="nav-item" ngbDropdown>
+        <a class="nav-link" id="profileDropdown" role="button" ngbDropdownToggle>
+          <span><fa-icon [icon]="faUser"></fa-icon> Admin</span>
         </a>
+        <ul class="bg-dark dropdown-menu-right" ngbDropdownMenu aria-labelledby="profileDropdown">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['admin', 'providers']">
+              <span><fa-icon [icon]="faLink"></fa-icon> Providers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['admin', 'clients']">
+              <span><fa-icon [icon]="faLink"></fa-icon> Clients</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

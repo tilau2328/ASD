@@ -9,7 +9,7 @@
     <input type="password" class="form-control" id="signInPasswordForm" formControlName="password"
            placeholder="**********" aria-describedby="forgetPasswordHelp" autocomplete="password">
   </div>
-  <a class="btn btn-link" routerLink="/auth/sign-up">New around here? Sign up!</a>
+  <a class="btn btn-link" [routerLink]="['auth', 'sign-up']">New around here? Sign up!</a>
   <button type="submit" class="btn btn-outline-light float-right">Sign in</button>
   <app-connect-button provider="github" method="login" (onSuccess)="onSuccess($event)"></app-connect-button>
 </form>

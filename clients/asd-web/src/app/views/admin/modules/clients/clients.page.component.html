@@ -1,26 +1,13 @@
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
+  <div class="col-sm-4">
     <h1>Clients</h1>
-    <div class="input-group col-12 row">
-      <input class="form-control" placeholder="Search..." name="filter" type="text" [formControl]="filter"/>
-      <div class="input-group-append">
-        <button class="btn btn-outline-dark" (click)="createClient()">
-          <fa-icon [icon]="faPlus"></fa-icon>
-        </button>
-      </div>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let client of clients$ | async">
-        <button class="btn btn-outline-dark col-8 col-sm-10" [routerLink]="['/client', client.id]">
-          {{client.name}}
-        </button>
-        <button class="btn btn-outline-dark col-2 col-sm-1" (click)="editClient(client)">
-          <fa-icon [icon]="faEdit"></fa-icon>
-        </button>
-        <button class="btn btn-outline-dark col-2 col-sm-1" (click)="deleteClient(client.id)">
-          <fa-icon [icon]="faTimes"></fa-icon>
-        </button>
-      </li>
-    </ul>
+    <app-client-list></app-client-list>
+  </div>
+  <div class="col-sm-4">
+    <h1>Provisions</h1>
+    <app-provision-list></app-provision-list>
+  </div>
+  <div class="col-sm-4">
+    <router-outlet name="client-provision"></router-outlet>
   </div>
 </div>

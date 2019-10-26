@@ -3,11 +3,11 @@ import {RouterModule} from "@angular/router";
 import {signInRoutes} from "./sign-in.routes";
 import {SignInPageComponent} from "./sign-in.page.component";
 import {SignInsPageComponent} from "./sign-ins.page.component";
-import {SignUpComponentModule} from "../../../../../../components/auth/sign-ups/sign-up.component.module";
+import {SignInComponentModule} from "../../../../../../components/auth/sign-ins/sign-in.component.module";
 
 @NgModule({
   imports: [
-    SignUpComponentModule,
+    SignInComponentModule,
     RouterModule.forChild(signInRoutes),
   ],
   declarations: [
