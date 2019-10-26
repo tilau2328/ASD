@@ -1,15 +1,14 @@
 import gql from "graphql-tag";
-import {PROVIDER_DETAIL_FRAGMENT, PROVIDER_ITEM_FRAGMENT} from "../providers/provider.queries";
 
 export const RESOURCE_ITEM_FRAGMENT = gql`
     fragment ResourceItemFragment on Resource {
         id
         name
         provider {
-            ...ProviderItemFragment
+            id
+            name
         }
     }
-    ${PROVIDER_ITEM_FRAGMENT}
 `;
 
 export const RESOURCE_DETAIL_FRAGMENT = gql`
@@ -19,13 +18,13 @@ export const RESOURCE_DETAIL_FRAGMENT = gql`
         method
         endpoint
         provider {
-            ...ProviderDetailFragment
+            id
+            name
         }
         params
         headers
         queryParams
     }
-    ${PROVIDER_DETAIL_FRAGMENT}
 `;
 
 export const RESOURCES_QUERY = gql`

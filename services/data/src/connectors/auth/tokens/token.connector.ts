@@ -1,7 +1,7 @@
-import {HttpService, Injectable} from "@nestjs/common";
-import {TokenDto} from "./token.api";
 import {map} from "rxjs/operators";
+import {TokenDto} from "./token.api";
 import { AxiosResponse } from "axios";
+import {HttpService, Injectable} from "@nestjs/common";
 
 @Injectable()
 export class TokenConnector {
@@ -17,6 +17,18 @@ export class TokenConnector {
 
     async get(id: string): Promise<TokenDto> {
         return this.http.get<TokenDto>(this.getUrl(id)).pipe(
+            map((res: AxiosResponse<TokenDto>) => res.data)
+        ).toPromise();
+    }
+
+    async refreshToken(refreshToken: string): Promise<TokenDto> {
+        return this.http.post<TokenDto>(`${this.url}/refresh/${refreshToken}`).pipe(
+            map((res: AxiosResponse<TokenDto>) => res.data)
+        ).toPromise();
+    }
+
+    async revokeToken(refreshToken: string) {
+        return this.http.delete<TokenDto>(`${this.url}/refresh/${refreshToken}`).pipe(
             map((res: AxiosResponse<TokenDto>) => res.data)
         ).toPromise();
     }

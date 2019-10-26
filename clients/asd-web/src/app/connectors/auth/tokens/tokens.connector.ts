@@ -8,6 +8,7 @@ import {
   TOKENS_QUERY,
   TOKEN_SUBSCRIPTION,
   DELETE_TOKEN_MUTATION,
+  REFRESH_TOKEN_MUTATION,
 } from "./token.queries";
 
 @Injectable()
@@ -47,6 +48,13 @@ export class TokensConnector {
     });
 
     return query.valueChanges.pipe(map(({ data }) => data["tokens"]));
+  }
+
+  refreshToken(refreshToken: string): Observable<TokenDto> {
+    return this.apollo.mutate<TokenDto>({
+      mutation: REFRESH_TOKEN_MUTATION,
+      variables: { refreshToken }
+    }).pipe(map(data => data["refreshToken"]));
   }
 
   delete(id: string): Observable<string> {

@@ -18,6 +18,16 @@ export class TokensResolver {
         return this.tokenConnector.get(id);
     }
 
+    @Mutation(returns => TokenType)
+    async refreshToken(@Args('refreshToken') refreshToken: string): Promise<TokenType> {
+        return this.tokenConnector.refreshToken(refreshToken);
+    }
+
+    @Mutation(returns => TokenType)
+    async revokeToken(@Args('refreshToken') refreshToken: string): Promise<TokenType> {
+        return this.tokenConnector.revokeToken(refreshToken);
+    }
+
     @Mutation(returns => String)
     async deleteToken(@Args({ name: 'id', type: () => ID }) id: string): Promise<string> {
         return this.tokenConnector.delete(id);

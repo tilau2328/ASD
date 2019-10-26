@@ -28,7 +28,7 @@ export class TokenService {
         const accessToken: string = this.jwtService.sign({ sub: user },
             { expiresIn: this.token_validity });
         const refreshToken: string = this.jwtService.sign({ sub: user },
-            { expiresIn: this.token_validity });
+            { expiresIn: this.refresh_validity });
         const tokenValidity: Date = new Date(Date.now() + this.token_validity);
         const refreshValidity: Date = new Date(Date.now() + this.refresh_validity);
         const token: Token = await this.tokenDao.create({
@@ -39,6 +39,28 @@ export class TokenService {
             user
         });
         return this.toDto(token);
+    }
+
+    async refreshToken(refreshToken: string) {
+        const token: Token = await this.tokenDao.findByRefreshToken(refreshToken);
+        if (!token) {
+            throw new Error('Error: Refresh Token is not valid.');
+        }
+        if (new Date() > token.refreshValidity) {
+            throw new Error('Error: Refresh Token is not valid anymore.');
+        }
+        return this.create(token.user);
+    }
+
+    async revokeToken(refreshToken: string): Promise<string> {
+        const token: Token = await this.tokenDao.findByRefreshToken(refreshToken);
+        if (!token) {
+            throw new Error('Error: Refresh Token is not valid.');
+        }
+        if (new Date() > token.refreshValidity) {
+            throw new Error('Error: Refresh Token is not valid anymore.');
+        }
+        return this.delete(token.id);
     }
 
     async delete(id: string): Promise<string> {

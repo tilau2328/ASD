@@ -3,9 +3,7 @@ import {ClientService} from "./client.service";
 import {ClientsDataModule} from "../../data/clients/clients.data.module";
 
 @Module({
-    imports: [
-        ClientsDataModule,
-    ],
+    imports: [ClientsDataModule],
     providers: [ClientService],
     exports: [ClientService],
 })

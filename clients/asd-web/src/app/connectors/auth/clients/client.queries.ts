@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-import {TOKEN_DETAIL_FRAGMENT} from "../tokens/token.queries";
 
 export const CLIENT_ITEM_FRAGMENT = gql`
     fragment ClientItemFragment on Client {
@@ -71,4 +70,5 @@ export const CLIENT_SUBSCRIPTION = gql`
             }
         }
     }
+    ${CLIENT_DETAIL_FRAGMENT}
 `;

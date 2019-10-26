@@ -1,12 +1,12 @@
-import {NgModule} from '@angular/core';
-import {Apollo, ApolloModule} from "apollo-angular";
-import {InMemoryCache} from "apollo-cache-inmemory";
-import {WebSocketLink} from "apollo-link-ws";
 import {Cookie} from "ng2-cookies";
+import {NgModule} from '@angular/core';
+import {WebSocketLink} from "apollo-link-ws";
 import {ApolloLink, split} from "apollo-link";
-import {getMainDefinition} from "apollo-utilities";
 import {OperationDefinitionNode} from "graphql";
 import {HttpLink} from "apollo-angular-link-http";
+import {getMainDefinition} from "apollo-utilities";
+import {Apollo, ApolloModule} from "apollo-angular";
+import {InMemoryCache} from "apollo-cache-inmemory";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 export const cache: InMemoryCache = new InMemoryCache();

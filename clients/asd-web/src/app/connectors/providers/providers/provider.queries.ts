@@ -27,7 +27,7 @@ export const PROVIDER_DETAIL_FRAGMENT = gql`
         authUrl {
             ...ResourceDetailFragment
         }
-        providerUrl {
+        userUrl {
             ...ResourceDetailFragment
         }
         tokenUrl {

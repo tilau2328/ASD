@@ -18,6 +18,12 @@ export class TokenDao {
         return token;
     }
 
+    async findByRefreshToken(refreshToken: string): Promise<Token> {
+        const token: Token = await this.tokenModel.findOne({ refreshToken }).exec();
+        if (!token) throw Error(`Invalid Refresh Token: ${refreshToken}`);
+        return token;
+    }
+
     async create(createTokenDto: TokenCreate): Promise<Token> {
         let token = new this.tokenModel(createTokenDto);
         return token.save();

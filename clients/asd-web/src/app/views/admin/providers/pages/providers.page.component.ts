@@ -3,10 +3,10 @@ import {FormControl} from "@angular/forms";
 import {Component, OnInit} from "@angular/core";
 import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {faPlus, faEdit, faTimes} from "@fortawesome/free-solid-svg-icons";
-import {ProviderService} from "../../../modules/providers/provider.service";
 import {ProviderModalComponent} from "../components/provider.modal.component";
-import {ProviderDto} from "../../../modules/providers/dto/provider.dto";
 import {ConfirmationService} from "../../../shared/services/confirmation.service";
+import {ProviderDto} from "../../../../connectors/providers/providers/provider.dto";
+import {ProviderService} from "../../../../services/providers/providers/provider.service";
 
 @Component({
   selector: 'app-providers-page',

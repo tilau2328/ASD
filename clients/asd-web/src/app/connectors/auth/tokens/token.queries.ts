@@ -34,6 +34,21 @@ export const TOKEN_QUERY = gql`
     ${TOKEN_DETAIL_FRAGMENT}
 `;
 
+export const REFRESH_TOKEN_MUTATION = gql`
+    mutation refreshToken($refreshToken: String!) {
+        refreshToken(refreshToken: $refreshToken) {
+            ...TokenDetailFragment
+        }
+    }
+    ${TOKEN_DETAIL_FRAGMENT}
+`;
+
+export const REVOKE_TOKEN_MUTATION = gql`
+    mutation revokeToken($token: String!) {
+        revokeToken(token: $token)
+    }
+`;
+
 export const DELETE_TOKEN_MUTATION = gql`
     mutation deleteToken($id: ID!) {
         deleteToken(id: $id)
@@ -49,4 +64,5 @@ export const TOKEN_SUBSCRIPTION = gql`
             }
         }
     }
+    ${TOKEN_DETAIL_FRAGMENT}
 `;

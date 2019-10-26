@@ -77,6 +77,8 @@ scalar DateTime
 type Mutation {
   updateUser(input: UpdateUserInput!, id: ID!): User!
   deleteUser(id: ID!): String!
+  refreshToken(refreshToken: String!): Token!
+  revokeToken(refreshToken: String!): Token!
   deleteToken(id: ID!): String!
   createClient(input: CreateClientInput!): Client!
   updateClient(input: UpdateClientInput!, id: ID!): Client!
@@ -127,6 +129,7 @@ type ProvisionEvent {
 type Query {
   users: [User!]!
   user(id: ID!): User!
+  me: User!
   tokens: [Token!]!
   token(id: ID!): [Token!]!
   clients: [Client!]!

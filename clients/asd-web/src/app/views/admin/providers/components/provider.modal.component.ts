@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProviderDto} from "../../../modules/providers/dto/provider.dto";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {ProviderService} from "../../../modules/providers/provider.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProviderDto} from "../../../../connectors/providers/providers/provider.dto";
+import {ProviderService} from "../../../../services/providers/providers/provider.service";
 
 @Component({
   selector: 'app-provider-modal',
@@ -13,15 +13,12 @@ export class ProviderModalComponent implements OnInit {
   @Input() provider: ProviderDto;
   showSecret: boolean = false;
   providerForm: FormGroup;
-  providers: string[];
 
   constructor(
     private readonly fb: FormBuilder,
     public readonly activeModal: NgbActiveModal,
     private readonly providerService: ProviderService,
-  ) {
-    providerService.providerEnum$.subscribe((providers: string[]) => this.providers = providers);
-  }
+  ) {}
 
   get isUpdate(): boolean {
     return !!this.provider;

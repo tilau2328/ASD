@@ -1,4 +1,4 @@
-import {Controller, Delete, Get, Param} from "@nestjs/common";
+import {Controller, Delete, Get, Param, Post} from "@nestjs/common";
 import {TokenDto} from "../../../services/auth/tokens/token.dto";
 import {TokenService} from "../../../services/auth/tokens/token.service";
 
@@ -14,6 +14,16 @@ export class TokenController {
     @Get(':id')
     async getTokens(@Param('id') id: string): Promise<TokenDto> {
         return this.tokenService.findById(id);
+    }
+
+    @Post('refresh/:refreshToken')
+    async refreshToken(@Param('refreshToken') refreshToken: string): Promise<TokenDto> {
+        return this.tokenService.refreshToken(refreshToken);
+    }
+
+    @Delete('revoke/:refreshToken')
+    async revokeToken(@Param('refreshToken') refreshToken: string): Promise<string> {
+        return this.tokenService.revokeToken(refreshToken);
     }
 
     @Delete(':id')

@@ -68,4 +68,5 @@ export const SIGN_IN_SUBSCRIPTION = gql`
             }
         }
     }
+    ${SIGN_IN_DETAIL_FRAGMENT}
 `;

@@ -10,29 +10,29 @@ export class ProviderService {
 
   constructor(private readonly providerConnector: ProvidersConnector) {}
 
-  listProviders(): Observable<ProviderDto[]> {
+  list(): Observable<ProviderDto[]> {
     if (!this.providers$) {
       this.providers$ = this.providerConnector.listProviders();
     }
     return this.providers$;
   }
 
-  getProvider(id: string): Observable<ProviderDto> {
+  get(id: string): Observable<ProviderDto> {
     if (!this.providers$) {
       this.currentProvider$ = this.providerConnector.getProvider(id);
     }
     return this.currentProvider$;
   }
 
-  createProvider(input: CreateProviderDto): Observable<ProviderDto> {
+  create(input: CreateProviderDto): Observable<ProviderDto> {
     return this.providerConnector.create(input);
   }
 
-  updateProvider(id: string, input: UpdateProviderDto): Observable<ProviderDto> {
+  update(id: string, input: UpdateProviderDto): Observable<ProviderDto> {
     return this.providerConnector.update(id, input);
   }
 
-  deleteProvider(id: string): Observable<string> {
+  delete(id: string): Observable<string> {
     return this.providerConnector.delete(id);
   }
 }

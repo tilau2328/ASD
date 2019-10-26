@@ -3,25 +3,25 @@ import {Route, RouterModule} from '@angular/router';
 import {HomePageComponent} from './pages/home.page.component';
 import {NotFoundPageComponent} from './pages/not-found.page.component';
 
-const routes: Route[] = [
+export const coreRoutes: Route[] = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
   { path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.views.module')
         .then(mod => mod.AuthViewsModule) },
-  { path: 'users',
+  { path: 'admin',
     loadChildren: () =>
-      import('../admin/users/user.views.module')
-        .then(mod => mod.UserViewsModule) },
-  { path: 'providers',
+      import('../admin/admin.views.module')
+        .then(mod => mod.AdminViewsModule) },
+  { path: 'private',
     loadChildren: () =>
-      import('../admin/providers/provider.views.module')
-        .then(mod => mod.ProviderViewsModule) },
+      import('../private/private.views.module')
+        .then(mod => mod.PrivateViewsModule) },
   { path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(coreRoutes)],
   exports: [RouterModule]
 })
 export class CoreRoutingModule {}
